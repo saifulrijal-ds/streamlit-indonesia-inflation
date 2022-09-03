@@ -11,7 +11,7 @@ df = get_data()
 st.dataframe(df)
 
 calculation_type=st.multiselect(
-    "Silakan pilih bagaimana inflasi dihitung",
+    "Silakan pilih bagaimana inflasi dihitung:",
     ["Year on Year", "Month to Month", "Year to date"],
     ["Year on Year"]
 )
@@ -22,3 +22,5 @@ calculation_type_map = {
     "Year to date": "ytd"
 }
 
+selected_df = df[df["variable"].isin([calculation_type_map[ct] for ct in calculation_type])]
+st.dataframe(selected_df)
