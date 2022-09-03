@@ -40,13 +40,17 @@ selected_df = df[df["variable"].isin([calculation_type_map[ct] for ct in calcula
 # st.dataframe(selected_df)
 
 color_range = ["#1f77b4", "#ff7f0e", "#2ca02c"]
-domain = [calculation_type_map[ct] for ct in calculation_type]
+# domain = [calculation_type_map[ct] for ct in calculation_type]
 
 date_scale = [start_date.strftime("%Y-%m-%d"), end_date.strftime("%Y-%m-%d")]
 inflation_chart = alt.Chart(selected_df).mark_line().encode(
     x=alt.X("date:T", title="Periode", scale=alt.Scale(domain=date_scale)),
     y=alt.Y("value:Q", title="Tingkat Inlfasi (%)"),
-    color=alt.Color("variable:O", scale=alt.Scale(domain=domain, range=color_range), title="Perhitungan"),
+    color=alt.Color(
+        "variable:O", 
+        scale=alt.Scale(range=color_range),
+        sort=["yoy", "mom", "ytd"], 
+        title="Perhitungan"),
     tooltip=[
         alt.Tooltip("date", title="Periode"),
         alt.Tooltip("value", title="Tingkat Inflasi (%)", format=".2f")
