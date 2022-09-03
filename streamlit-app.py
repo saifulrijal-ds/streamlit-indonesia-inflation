@@ -49,7 +49,7 @@ inflation_chart = alt.Chart(selected_df).mark_line().encode(
     color=alt.Color(
         "variable:O", 
         scale=alt.Scale(range=color_range),
-        sort=["yoy", "mom", "ytd"], 
+        sort=["yoy", "mtm", "ytd"], 
         title="Perhitungan"),
     tooltip=[
         alt.Tooltip("date", title="Periode"),
