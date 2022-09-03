@@ -16,7 +16,7 @@ last_date = df["date"].max()
 start_date = st.sidebar.date_input("Tanggal mulai", first_date)
 end_date = st.sidebar.date_input('Tanggal akhir', last_date)
 if start_date < end_date:
-    st.sidebar.success(f"Start date: {start_date} \nEnd date: {end_date}")
+    st.sidebar.success(f"Start date: {start_date} \n\nEnd date: {end_date}")
 else:
     st.sidebar.error('Error: End date must fall after start date.')
 
@@ -38,7 +38,7 @@ st.dataframe(selected_df)
 color_range = ["#1f77b4", "#ff7f0e", "#2ca02c"]
 domain = ["yoy", "mtm", "ytd"]
 
-date_scale = [start_date.strftime("%Y-%m-%d"), end_date.strftime("%Y-%m-%d")]
+date_scale = [start_date.strftime("%Y-%d-%m"), end_date.strftime("%Y-%d-%m")]
 inflation_chart = alt.Chart(selected_df).mark_line().encode(
     x=alt.X("date:T", title="Periode", scale=date_scale),
     y=alt.Y("value:Q", title="Tingkat Inlfasi (%)"),
