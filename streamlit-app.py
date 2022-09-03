@@ -29,9 +29,9 @@ color_range = ["#1f77b4", "#ff7f0e", "#2ca02c"]
 domain = ["yoy", "mtm", "ytd"]
 
 inflation_chart = alt.Chart(selected_df).mark_line().encode(
-    x=alt.X("date:T", title="Periode"),
+    x=alt.X("date:T", title="Periode", timeUnit="yearmonth"),
     y=alt.Y("value:Q", title="Tingkat Inlfasi (%)"),
-    color=alt.Color("variable:O", scale=alt.Scale(domain=domain, range=color_range)),
+    color=alt.Color("variable:O", scale=alt.Scale(domain=domain, range=color_range), title="Perhitungan"),
     tooltip=[
         alt.Tooltip("date", title="Periode"),
         alt.Tooltip("value", title="Tingkat Inflasi (%)", format=".2f")
