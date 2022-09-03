@@ -40,7 +40,7 @@ st.write(type(start_date))
 st.write(type(end_date))
 
 selected_df = df[df["variable"].isin([calculation_type_map[ct] for ct in calculation_type])]
-mask_date = (df["date"] >= start_date) & (df["date"] <= end_date)
+mask_date = (df["date"].dt.date >= start_date) & (df["date"].dt.date <= end_date)
 selected_df = selected_df[mask_date]
 # st.dataframe(selected_df)
 
