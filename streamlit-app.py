@@ -57,6 +57,6 @@ inflation_chart = alt.Chart(selected_df).mark_line().encode(
     ]
 ).properties(
     title="Tingkat Inflasi Indonesia"
-).interactive()
+)
 
 st.altair_chart(inflation_chart, use_container_width=True)
