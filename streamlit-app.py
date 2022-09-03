@@ -37,16 +37,18 @@ calculation_type_map = {
 }
 
 selected_df = df[df["variable"].isin([calculation_type_map[ct] for ct in calculation_type])]
+mask_date = (df["date"] >= start_date) & (df[""] <= end_date)
+selected_df = selected_df[mask_date]
 # st.dataframe(selected_df)
 
 color_range = ["#1f77b4", "#ff7f0e", "#2ca02c"]
 # domain = [calculation_type_map[ct] for ct in calculation_type]
 
-date_scale = [start_date.strftime("%Y-%m-%d"), end_date.strftime("%Y-%m-%d")]
+# date_scale = [start_date.strftime("%Y-%m-%d"), end_date.strftime("%Y-%m-%d")]
 
 inflation_chart = alt.Chart(selected_df).mark_line().encode(
-    x=alt.X("date:T", title="Periode", scale=alt.Scale(domain=date_scale)),
-    y=alt.Y("value:Q", title="Tingkat Inlfasi (%)", scale=alt.Scale()),
+    x=alt.X("date:T", title="Periode"), # scale=alt.Scale(domain=date_scale)
+    y=alt.Y("value:Q", title="Tingkat Inlfasi (%)"),
     color=alt.Color(
         "variable:O", 
         scale=alt.Scale(range=color_range),
@@ -54,6 +56,7 @@ inflation_chart = alt.Chart(selected_df).mark_line().encode(
         title="Perhitungan"),
     tooltip=[
         alt.Tooltip("date", title="Periode"),
+        alt.Tooltip("variable", title="Perhitungan"),
         alt.Tooltip("value", title="Tingkat Inflasi (%)", format=".2f")
     ]
 ).properties(
