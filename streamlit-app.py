@@ -11,6 +11,7 @@ df = get_data()
 st.dataframe(df)
 
 calculation_type=st.multiselect(
+    "Silakan pilih bagaimana inflasi dihitung",
     ["Year on Year", "Month to Month", "Year to date"],
     ["Year on Year"]
 )
