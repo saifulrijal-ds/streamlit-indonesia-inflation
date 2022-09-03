@@ -10,11 +10,15 @@ def get_data():
 df = get_data()
 # st.dataframe(df)
 
+st.title("Tingkat Inflasi Indonesia")
+
 first_date = df["date"].min()
 last_date = df["date"].max()
 
 start_date = st.sidebar.date_input("Tanggal mulai", first_date)
 end_date = st.sidebar.date_input('Tanggal akhir', last_date)
+st.sidebar.caption("Hanya perhatikan bulan dan tahun, tanggal (1-31) dipilih bebas")
+
 if start_date < end_date:
     st.sidebar.success(f"Start date: {start_date} \n\nEnd date: {end_date}")
 else:
@@ -33,10 +37,10 @@ calculation_type_map = {
 }
 
 selected_df = df[df["variable"].isin([calculation_type_map[ct] for ct in calculation_type])]
-st.dataframe(selected_df)
+# st.dataframe(selected_df)
 
 color_range = ["#1f77b4", "#ff7f0e", "#2ca02c"]
-domain = ["yoy", "mtm", "ytd"]
+domain = [calculation_type_map[ct] for ct in calculation_type]
 
 date_scale = [start_date.strftime("%Y-%m-%d"), end_date.strftime("%Y-%m-%d")]
 inflation_chart = alt.Chart(selected_df).mark_line().encode(
