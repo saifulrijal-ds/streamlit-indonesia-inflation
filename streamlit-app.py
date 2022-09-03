@@ -38,9 +38,9 @@ st.dataframe(selected_df)
 color_range = ["#1f77b4", "#ff7f0e", "#2ca02c"]
 domain = ["yoy", "mtm", "ytd"]
 
-date_scale = [start_date.strftime("%Y-%m"), end_date.strftime("%Y-%m")]
+date_scale = [start_date.strftime("%Y-%m-%d"), end_date.strftime("%Y-%m-%d")]
 inflation_chart = alt.Chart(selected_df).mark_line().encode(
-    x=alt.X("date:T", title="Periode", timeUnit="yearmonth", scale=date_scale),
+    x=alt.X("date:T", title="Periode", scale=alt.Scale(domain=date_scale)),
     y=alt.Y("value:Q", title="Tingkat Inlfasi (%)"),
     color=alt.Color("variable:O", scale=alt.Scale(domain=domain, range=color_range), title="Perhitungan"),
     tooltip=[
