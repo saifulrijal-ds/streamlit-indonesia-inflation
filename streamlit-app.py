@@ -83,4 +83,4 @@ st.download_button(
     key="download-csv"
 )
 
-st.markdown("Sumber data beserta keterangan lebih lanjut, silakan kunjumgi [BPS](https://www.bps.go.id/subject/3/inflasi.html#subjekViewTab3)")
+st.markdown("Sumber data beserta keterangan lebih lanjut, silakan kunjungi [BPS](https://www.bps.go.id/subject/3/inflasi.html#subjekViewTab3).")
