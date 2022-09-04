@@ -65,8 +65,20 @@ inflation_chart = alt.Chart(selected_df).mark_line().encode(
 
 st.altair_chart(inflation_chart, use_container_width=True)
 
-# @st.cache
-
 st.dataframe(selected_df)
-unmelted_df = selected_df.pivot(index=["date", "bulan", "tahun"], columns="variable", values="value").round(2).reset_index()
+unmelted_df = selected_df.pivot(index=["date", "bulan", "tahun"], columns="variable", values="value").round(decimals=2).reset_index()
 st.dataframe(unmelted_df)
+
+@st.cache
+def conver_dataframe(df: pd.DataFrame):
+    return df.to_csv(index=False).encode("utf-8")
+
+csv = conver_dataframe(unmelted_df)
+
+st.download_button(
+    "Unduh .CSV",
+    csv,
+    "inflation.csv",
+    "text/csv",
+    key="download-csv"
+)
