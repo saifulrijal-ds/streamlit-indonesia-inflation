@@ -64,3 +64,8 @@ inflation_chart = alt.Chart(selected_df).mark_line().encode(
 ).interactive()
 
 st.altair_chart(inflation_chart, use_container_width=True)
+
+# @st.cache
+
+st.dataframe(selected_df)
+# unmelted_df = selected_df.groupby()
