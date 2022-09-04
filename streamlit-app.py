@@ -65,9 +65,9 @@ inflation_chart = alt.Chart(selected_df).mark_line().encode(
 
 st.altair_chart(inflation_chart, use_container_width=True)
 
-st.dataframe(selected_df)
+# st.dataframe(selected_df)
 unmelted_df = selected_df.pivot(index=["date", "bulan", "tahun"], columns="variable", values="value").round(decimals=2).reset_index()
-st.dataframe(unmelted_df)
+# st.dataframe(unmelted_df)
 
 @st.cache
 def conver_dataframe(df: pd.DataFrame):
@@ -82,3 +82,5 @@ st.download_button(
     "text/csv",
     key="download-csv"
 )
+
+st.markdown("Sumber data beserta keterangan lebih lanjut, silakan kunjumgi [BPS](https://www.bps.go.id/subject/3/inflasi.html#subjekViewTab3)")
