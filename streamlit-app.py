@@ -68,6 +68,5 @@ st.altair_chart(inflation_chart, use_container_width=True)
 # @st.cache
 
 st.dataframe(selected_df)
-unmelted_df = selected_df.pivot(index=["date", "bulan", "tahun"], columns="variable", values="value").reset_index()
+unmelted_df = selected_df.pivot(index=["date", "bulan", "tahun"], columns="variable", values="value").reset_index().round(2)
 st.dataframe(unmelted_df)
-st.dataframe(unmelted_df.info())
